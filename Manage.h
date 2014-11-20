@@ -6,7 +6,7 @@
 
 using namespace std;
 
-class Manage {
+class Manage : public Pointable{
   private:
     map<string, intrusive_ptr<File> > fileTable;
     map<string, intrusive_ptr<Group> > groupTable;
@@ -14,6 +14,7 @@ class Manage {
     virtual bool checkNameIntoGroup(intrusive_ptr<Group> group, string fileName);
    
   public:
+    Manage() {}
     virtual intrusive_ptr<Group> newGroup(string group_name);
     virtual intrusive_ptr<Picture> newPicture(string group_name, string _name, int _acquisition_date, string _file_name, float _lat, float _lng);
     virtual intrusive_ptr<Video> newVideo(string group_name, string _name, int _acquisition_date, string _file_name, int _length);

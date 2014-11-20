@@ -49,15 +49,16 @@ intrusive_ptr<Film> Manage::newFilm(string group_name, string _name, int _acquis
 }
 
 /****************** Remove an object from all groups and the file table **************************/
-void Manage::remove(string fileName) {
-  if(fileTable.count(fileName) != 0) {
+// or remove a group
+void Manage::remove(string name) {
+  if(fileTable.count(name) != 0) {
     for( std::map<string, intrusive_ptr<Group> >::iterator groupIterator = groupTable.begin(); groupIterator != groupTable.end(); groupIterator++) {
       intrusive_ptr<Group> group = (groupIterator->second);
 
-      if( this->checkNameIntoGroup(group, fileName)) {
+      if( this->checkNameIntoGroup(group, name)) {
         intrusive_ptr<File> toRemove = NULL;
         for(Group::iterator file = group->begin(); file != group->end(); file++) {
-          if ( (*file)->getName() == fileName) {
+          if ( (*file)->getName() == name) {
             toRemove = (*file);
             break;
           }
@@ -67,9 +68,10 @@ void Manage::remove(string fileName) {
         }
       }
     }
+    fileTable.erase(name);
+  } else if (groupTable.count(name) != 0) {
+    groupTable.erase(name);
   }
-
-  fileTable.erase(fileName);
 }
 
 /******************* Search for a group or a file, return it and print it **********************/
