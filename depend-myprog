@@ -1,0 +1,9 @@
+File.o: c++/File.cpp c++/File.h c++/intrusive_ptr.h
+main.o: c++/main.cpp c++/File.h c++/intrusive_ptr.h c++/Group.h \
+ c++/Manage.h c++/TCPServer.h c++/Socket.h
+Group.o: c++/Group.cpp c++/Group.h c++/File.h c++/intrusive_ptr.h
+Manage.o: c++/Manage.cpp c++/Manage.h c++/File.h c++/intrusive_ptr.h \
+ c++/Group.h
+TCPServer.o: c++/TCPServer.cpp c++/TCPServer.h c++/Socket.h c++/Manage.h \
+ c++/File.h c++/intrusive_ptr.h c++/Group.h
+Socket.o: c++/Socket.cpp c++/Socket.h
