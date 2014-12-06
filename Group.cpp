@@ -4,11 +4,13 @@
 
 Group::~Group(){};
 
-void Group::printGroup() {
-  cout << "I am a group and my name is : " << group_name << "\n";
+string Group::printGroup() {
+  string toPrint;
+  toPrint = "I am a group and my name is : " + group_name + "\n";
   for (std::list<intrusive_ptr<File> >::iterator i = this->begin(); i != this->end(); ++i) {
-    (*i)->printAttr();
-    cout << "\n";
+    toPrint += (*i)->printAttr();
+    toPrint += "\n";
   }
+  return toPrint;
 }
   

@@ -5,6 +5,7 @@
 #include "Manage.h"
 #include "TCPServer.h"
 
+
 int main(int argc, char** argv)
 {
   /*
@@ -20,14 +21,6 @@ int main(int argc, char** argv)
   intrusive_ptr<Manage> manager = new Manage();
   int chapter_length_ex [3] = {1, 2, 3};
   manager->newFilm("group toto", "first_video", 1234, "video.mp4", 3, chapter_length_ex);
-  manager->searchGroup("group toto");
-  cout << "\ntiti\n";
-  manager->searchFile("first_video");
-
-  manager->remove("first_video");
-  cout << "\n";
-  manager->searchGroup("group toto");
-  manager->searchGroup("group titi");
 
   TCPServer* server = new TCPServer();
   server->run(3331);

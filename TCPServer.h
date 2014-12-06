@@ -8,6 +8,7 @@
 #define __TCPServer__
 #include <pthread.h>
 #include "Socket.h"
+#include "Manage.h"
 
 
 /** TCPServer: TCP/IP INET Server.
@@ -41,12 +42,15 @@ protected:
 
   ServerSocket servsock;
   pthread_rwlock_t lock;
+
+  string toto; //test
   
 private: // disables copy.
   TCPServer(const TCPServer&);
   TCPServer& operator=(const TCPServer&);
+  //my variables
+  Manage* manager;
 };
 
 
 #endif
-

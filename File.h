@@ -1,6 +1,5 @@
 #ifndef FILE_H
 #define FILE_H
-#include <string.h>
 #include "intrusive_ptr.h"
 
 using namespace std;
@@ -12,6 +11,9 @@ class File : public Pointable
     string name;
     int acquisition_date;
     string file_name;
+
+  protected:
+    string toPrint;
 
   public:
     File(string _name, int _acquisition_date, string _file_name);
@@ -26,7 +28,7 @@ class File : public Pointable
     virtual void setFileName(string);
 
     //print atributs
-    virtual void printAttr();
+    virtual string printAttr();
     
     // In all descendant class, will play the media content
     virtual void play() = 0;
@@ -42,7 +44,7 @@ class Video : public File
 
     virtual int getLength() const;
     virtual void setLength(int);
-    virtual void printAttr();
+    virtual string printAttr();
     virtual void play();
 };
 
@@ -59,7 +61,7 @@ class Film : public Video
     virtual int* getChapterLength() const;
     virtual void setChapterLength(int, int*);
     virtual int getNbChapter() const;
-    virtual void printAttr();
+    virtual string printAttr();
 
 };
 
@@ -72,7 +74,7 @@ class Picture : public File
   public:
     Picture(string _name, int _acquisition_date, string _file_name, float _lat, float _lng);
 
-    virtual void printAttr();
+    virtual string printAttr();
 
     virtual float getLat() const;
     virtual float getLng() const;

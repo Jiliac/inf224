@@ -1,10 +1,10 @@
 #ifndef GROUPE_H
 #define GROUPE_H
-#include <string.h>
-using namespace std;
-#include "File.h"
 #include <list>
+#include "File.h"
 #include "intrusive_ptr.h"
+
+using namespace std;
 
 class Group : public list<intrusive_ptr<File> >, public Pointable{
   private:
@@ -16,7 +16,7 @@ class Group : public list<intrusive_ptr<File> >, public Pointable{
     }
     ~Group();
 
-    virtual void printGroup();
+    virtual string printGroup();
 
     virtual string getGroupName() const {
       return group_name;

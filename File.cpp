@@ -1,7 +1,7 @@
-#include <stdio.h>
 #include <iostream>
 #include "File.h"
-#include <stdlib.h>
+
+using namespace std;
 
 /**************** File Implementation *******************/
 File::File(string _name, int _acquisition_date, string _file_name)
@@ -23,10 +23,11 @@ void File::setAcquisitionDate(int _acquisition_date) { acquisition_date = _acqui
 void File::setFileName(string _file_name) { file_name = _file_name;}
 
 // print attribut
-void File::printAttr() {
-  cout << "Name : " << name << "\n";
-  cout << "Acquisition date: " << acquisition_date << "\n";
-  cout << "File Name: " << file_name << "\n";
+string File::printAttr() {
+  toPrint = "Name : " + name + " -- ";
+  toPrint += "Acquisition date: " + to_string(acquisition_date) + " -- ";
+  toPrint += "File Name: " + file_name + " -- ";
+  return toPrint;
 }
 
 
@@ -39,9 +40,10 @@ Video::Video(string _name, int _acquisition_date, string _file_name, int _length
 int Video::getLength() const { return length;}
 void Video::setLength(int _length) { length = _length;}
 
-void Video::printAttr() {
+string Video::printAttr() {
   File::printAttr();
-  cout << "Video length : " << length << " s\n";
+  toPrint += "Video length : " + to_string(length) + " s -- ";
+  return toPrint;
 } 
 
 void Video::play() {
@@ -78,13 +80,14 @@ void Film::setChapterLength(int _nb_chapter, int* _chapter_length) {
 int* Film::getChapterLength() const { return chapter_length;}
 int Film::getNbChapter() const { return nb_chapter;}
 
-void Film::printAttr() {
+string Film::printAttr() {
   Video::printAttr();
-  cout << "Chapter Number :" << nb_chapter << "\n";
+  toPrint += "Chapter Number :" + to_string(nb_chapter) + " -- ";
   for (int i = 0; i  < nb_chapter; ++i )
   {
-    cout << "Chapter n°" << i << " Length:" << chapter_length[i] << "\n";
+    toPrint += "Chapter n°" + to_string(i) + " Length:" + to_string(chapter_length[i]) + " -- ";
   }
+  return toPrint;
 }
 
 /*************** Picture Implementation *****************/
@@ -99,10 +102,11 @@ float Picture::getLng() const { return lng;}
 void Picture::setLat(float _lat) { lat = _lat;}
 void Picture::setLng(float _lng) { lng = _lng;}
 
-void Picture::printAttr() {
+string Picture::printAttr() {
   File::printAttr();
-  cout << "Picture Latitude : " << lat << "\n";
-  cout << "Picture Longitude : " << lng << "\n";
+  toPrint += "Picture Latitude : " + to_string(lat) + " -- ";
+  toPrint += "Picture Longitude : " + to_string(lng) + " -- ";
+  return toPrint;
 }
 
 void Picture::play() {
@@ -111,4 +115,3 @@ void Picture::play() {
   toExecute += " &";
   system(toExecute.c_str());
 }
-

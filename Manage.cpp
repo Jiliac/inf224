@@ -1,4 +1,3 @@
-#include <stdio.h>
 #include "Manage.h"
 #include "intrusive_ptr.h"
 
