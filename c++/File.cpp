@@ -74,8 +74,6 @@ void Film::setChapterLength(int _nb_chapter, int* _chapter_length) {
   }
   this->setLength(new_length);
 }
-/******** ATTENTION ***********/
-/* Il faudrait que cela setLength aussi */
 
 int* Film::getChapterLength() const { return chapter_length;}
 int Film::getNbChapter() const { return nb_chapter;}

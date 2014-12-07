@@ -30,6 +30,10 @@ struct TCPServerHook {
 TCPServer::TCPServer() : servsock() {
   pthread_rwlock_init(&lock, NULL);
   manager = new Manage();
+
+  //add some thing into the manager for test
+  manager->newVideo("first_group", "test", 12345, "$HOME/Downloads/test.mp4", 54321);
+  manager->newPicture("second_group", "picture", 567, "$HOME/Downloads/picture.mp4", 0, 0); 
 }
 
 TCPServer::~TCPServer() {}
@@ -173,33 +177,28 @@ bool TCPServer::processMessage(const string& message, string& response)
   else
     pthread_rwlock_rdlock(&lock);  // bloque en mode READ
 
-
-  /* Pour simple test
-
-  // executer la commande et calculer la reponse
-  // pour l'instant on se contente de prefixer le message par "OK: "
-  cout << "TCPServer: message: " << message << endl;
-  response = "OK: ";
-  response += message;
-  // sleep(8);                    // sert uniquement a tester le verrou
-  cout << "TCPServer:TCPServer response: " << response << endl;
-
-*/
-
+  /****************************************************************************/
   // debut de l'implementation d'un "mini-langage" de communication seveur/client
+  
   string word;
   list<string> wordsToAnalyse = list<string>(); 
   stringstream ss(message);
   while(getline(ss, word, ' ') ) {
     wordsToAnalyse.push_back(word);
   }
-
+  
+  /*
+   * parsing the words sent to the server.
+   * first -> search or play?
+   * first - bis -> if search, file or group?
+   * second -> in any case, search for file/group using its name.
+   */
   if( wordsToAnalyse.size() > 1) {
     list<string>::iterator wordIterator = wordsToAnalyse.begin();
     string wordToCompare = (*wordIterator);
     transform(wordToCompare.begin(), wordToCompare.end(), wordToCompare.begin(), ::tolower);
     if( wordToCompare == "search" ) {
-      wordIterator++; //pas tres propre..., verifier s'il existe une suite... ou plutot, verifier s'il y a au moins deux arguments dès le début??
+      wordIterator++;
       wordToCompare = (*wordIterator);
       transform(wordToCompare.begin(), wordToCompare.end(), wordToCompare.begin(), ::tolower);
 
@@ -240,6 +239,9 @@ bool TCPServer::processMessage(const string& message, string& response)
   } else {
     response = "not enough arguments";
   }
+
+  // fin de l'implementation du mini-langage
+  /*************************************************************************/
 
   // debloque le verrou (attention ne pas oublier cette ligne !)
   pthread_rwlock_unlock(&lock);

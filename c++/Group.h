@@ -16,6 +16,8 @@ class Group : public list<intrusive_ptr<File> >, public Pointable{
     }
     ~Group();
 
+    // print every file in this group
+    // using the printAttr() method of those files.
     virtual string printGroup();
 
     virtual string getGroupName() const {

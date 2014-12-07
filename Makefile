@@ -15,7 +15,7 @@ OBJETS=${SOURCES:%.cpp=%.o}
 
 # Compilateur C++
 # suivant les systemes c'est CXX ou CCC => on initialise les deux
-CXX= g++
+CXX= c++
 CCC= ${CXX}
 
 # Options du compilateur C++
@@ -43,7 +43,7 @@ ${PROG}: depend-${PROG} ${OBJETS}
 	${CXX} -o $@ ${LDFLAGS} ${OBJETS} ${LDLIBS}
 
 clean:
-	-@$(RM) c++/*.o depend-${PROG} core 1>/dev/null 2>&1
+	-@$(RM) c++/*.o java/*.class depend-${PROG} core 1>/dev/null 2>&1
 
 clean-all: clean
 	-@$(RM) ${PROG} 1>/dev/null 2>&1

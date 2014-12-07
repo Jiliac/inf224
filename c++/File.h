@@ -28,6 +28,7 @@ class File : public Pointable
     virtual void setFileName(string);
 
     //print atributs
+    //will be reimplemented in every subclasse.
     virtual string printAttr();
     
     // In all descendant class, will play the media content

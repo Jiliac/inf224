@@ -1,8 +1,5 @@
 #include <stdio.h>
 #include <iostream>
-#include "File.h"
-#include "Group.h"
-#include "Manage.h"
 #include "TCPServer.h"
 
 
