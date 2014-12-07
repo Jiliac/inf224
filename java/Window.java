@@ -26,24 +26,13 @@ public class Window extends JFrame {
   private String selectedRadioButton = null;
   private String textEntry = null; //will be the file (or group) name to send to server
 
-  //private JTextArea textArea;
-	
 	public Window() {
 		init_windows();
-
-    /*
-     * c'etait la partie pour test...
-
-		textArea = new JTextArea(6, 20);
-		textArea.setText("some few words...");
-		pan.add(textArea, BorderLayout.NORTH);
-    */
 
     textArea = new JTextArea(5, 5);
     textArea.setEditable(false);
     pan.add(textArea, BorderLayout.CENTER);
 
-		//pan.add(genRadioButtons(), BorderLayout.SOUTH);
     pan.add(genSearchPanel(), BorderLayout.SOUTH);
    
 		this.setContentPane(pan);
@@ -56,6 +45,9 @@ public class Window extends JFrame {
     }
 	}
 	
+  /*
+   * initialise la fenetre que sera ensuite agrementer par des panneaux
+   */
 	private void init_windows() {
 		this.setTitle("First Window");
 		this.setSize(300, 300);
@@ -63,7 +55,7 @@ public class Window extends JFrame {
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		pan = new JPanel();
-		pan.setBackground(Color.ORANGE);
+		pan.setBackground(Color.BLACK);
 		
 		this.setLayout(new BorderLayout());
 		
@@ -75,7 +67,10 @@ public class Window extends JFrame {
 		menuBar.add(fileMenu);
 		fileMenu.add(tool);
 	}
-
+  
+  /*
+   * s'occupe de generer le panneau inferieur destiner a la recherche
+   */
   private JPanel genSearchPanel() {
     JPanel searchPanel = new JPanel();
     searchPanel.setLayout(new GridLayout(1, 3));
@@ -101,6 +96,9 @@ public class Window extends JFrame {
     return searchPanel;
   }
 	
+  /*
+   * genere le groupe de radio boutons ensuite utiliser dans le panneau de recherche
+   */
 	private JPanel genRadioButtons() {
 		JPanel buttonsPanel = new JPanel();
 		buttonsPanel.setLayout(new GridLayout(1, 3));
@@ -125,6 +123,9 @@ public class Window extends JFrame {
 		return buttonsPanel;
 	}
 	
+  /*
+   * genere le menu qui ne contient qu'un champ "exit" qui ferme la telecommande
+   */
 	private void genFileMenu(JMenu fileMenu){
 		JButton exitButton = new JButton("Exit");
 		exitButton.addActionListener(new ExitAction());
