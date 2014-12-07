@@ -8,16 +8,16 @@ Developpe sur Linux. Non teste sur autre plateforme.
 ## Compilation
 
 J'utilise simplement
-''' bash
+``` bash
 sh compile.sh
-'''
+```
 Cela devrait marcher sur tout ordinateur Linux. Compilateur c++: c++, java: javac.
 
 ## Run
 
 Lancement du serveur et de la telecommande (client):
-''' bash
+``` bash
 $CPPHOME/myprog
 cd $CPPHOME/java
 java Main
-'''
+```
